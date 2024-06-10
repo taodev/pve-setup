@@ -29,11 +29,13 @@ nameserver 223.6.6.6
 EOF
 
 apt install apt-transport-https ca-certificates
+source /etc/os-release
 
 # PVE-换源
 _red "step 2: PVE-换源"
 backup_file /etc/apt/sources.list
 backup_file /etc/apt/sources.list.d/ceph.list
+backup_file /etc/apt/sources.list.d/pve-enterprise.list
 backup_file /usr/share/perl5/PVE/APLInfo.pm
 
 cat <<EOF
@@ -46,15 +48,15 @@ case $select_source in
 1)
     # 科大源
     cat > /etc/apt/sources.list <<EOF
-deb https://mirrors.ustc.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
-deb https://mirrors.ustc.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
-# deb https://mirrors.ustc.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+deb https://mirrors.ustc.edu.cn/debian/ $VERSION_CODENAME main contrib non-free non-free-firmware
+deb https://mirrors.ustc.edu.cn/debian/ $VERSION_CODENAME-updates main contrib non-free non-free-firmware
+# deb https://mirrors.ustc.edu.cn/debian/ $VERSION_CODENAME-backports main contrib non-free non-free-firmware
 
-deb https://mirrors.ustc.edu.cn/debian-security/ bookworm-security main contrib non-free non-free-firmware
+deb https://mirrors.ustc.edu.cn/debian-security/ $VERSION_CODENAME-security main contrib non-free non-free-firmware
 EOF
 
     # pve subscription
-    echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
+    echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/pve $VERSION_CODENAME pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
 
     # CT Templates
     sed -i 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
@@ -62,25 +64,30 @@ EOF
     # ceph
     if [ -f /etc/apt/sources.list.d/ceph.list ]; then
         CEPH_CODENAME=`ceph -v | grep ceph | awk '{print $(NF-1)}'`
-        source /etc/os-release
         echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/ceph-$CEPH_CODENAME $VERSION_CODENAME no-subscription" > /etc/apt/sources.list.d/ceph.list
     fi
+
+    # pve-enterprise.list
+    sed -i 's|deb|# deb|g' /etc/apt/sources.list.d/pve-enterprise.list
     ;;
 2)
     # 清华源
     cat > /etc/apt/sources.list <<EOF
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
-# deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ $VERSION_CODENAME main contrib non-free non-free-firmware
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ $VERSION_CODENAME-updates main contrib non-free non-free-firmware
+# deb https://mirrors.tuna.tsinghua.edu.cn/debian/ $VERSION_CODENAME-backports main contrib non-free non-free-firmware
 
-deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware
+deb https://mirrors.tuna.tsinghua.edu.cn/debian-security $VERSION_CODENAME-security main contrib non-free non-free-firmware
 EOF
 
     # pve subscription
-    echo "deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian/pve $VERSION_CODENAME pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
 
     # CT Templates
     sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
+
+    # pve-enterprise.list
+    sed -i 's|deb|# deb|g' /etc/apt/sources.list.d/pve-enterprise.list
     ;;
 *)
     echo "使用默认官方源"
