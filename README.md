@@ -7,18 +7,18 @@
 ### 使用wget安装
 github官方安装
 ```
-sudo sh -c "$(wget -qO- https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
+sh -c "$(wget -qO- https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
 ```
 ghproxy镜像安装
 ```
-sudo sh -c "$(wget -qO- https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
+sh -c "$(wget -qO- https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
 ```
 ### 使用curl安装
 github官方安装
 ```
-sudo sh -c "$(curl -sL https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
+sh -c "$(curl -sL https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
 ```
 ghproxy镜像安装
 ```
-sudo sh -c "$(curl -sL https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
+sh -c "$(curl -sL https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
 ```
