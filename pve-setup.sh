@@ -479,7 +479,7 @@ cat <<EOF
   1: 移除local-lvm, 扩容local
 EOF
 reading "请选择设置(默认跳过): " remove_local_lvm
-case $select_ui in
+case $remove_local_lvm in
 1)
     lvremove -y /dev/pve/data
     lvextend -rl +100%FREE /dev/pve/root
