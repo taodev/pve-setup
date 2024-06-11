@@ -222,15 +222,16 @@ setup_ui() {
     if ! command -v sensors > /dev/null; then
         echo "你需要先安装 lm-sensors 和 linux-cpupower, 尝试自动安装"
         if apt update ; apt install -y lm-sensors linux-cpupower; then 
-            modprobe msr
-            echo msr > /etc/modules-load.d/turbostat-msr.conf
-            chmod +s /usr/sbin/turbostat
             echo "lm-sensors linux-cpupower安装成功"
         else
             echo "安装所需依赖失败, 请手动安装"
             exit 1
         fi
     fi
+
+    modprobe msr
+    echo msr > /etc/modules-load.d/turbostat-msr.conf
+    chmod +s /usr/sbin/turbostat
 
     content_nodespm=/tmp/.content_nodespm
     cat > $content_nodespm << 'EOF'
