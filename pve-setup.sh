@@ -473,6 +473,20 @@ case $select_ui in
     ;;
 esac
 
+_green "step 6: 移除local-lvm"
+cat <<EOF
+  0: 跳过
+  2: 移除local-lvm, 扩容local
+EOF
+reading "请选择设置(默认跳过): " remove_local_lvm
+case $select_ui in
+1)
+    lvremove -y /dev/pve/data
+    lvextend -rl +100%FREE /dev/pve/root
+    echo "删除local-lvm并扩容local, 需要手动在数据中心->存储, 移除local-lvm"
+    ;;
+esac
+
 if [ $restart_pveproxy -eq 1 ]; then 
     echo "重启pveproxy"
     systemctl restart pveproxy
