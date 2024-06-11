@@ -462,7 +462,7 @@ reading "请选择设置(默认跳过): " select_ui
 case $select_ui in
 1)
     restore_file $nodespm
-    restore_file $proxmoxlibjs
+    restore_file $pvemanagerlibjs
     restart_pveproxy=1
     ;;
 2)
