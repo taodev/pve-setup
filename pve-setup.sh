@@ -476,7 +476,7 @@ esac
 _green "step 6: 移除local-lvm"
 cat <<EOF
   0: 跳过
-  2: 移除local-lvm, 扩容local
+  1: 移除local-lvm, 扩容local
 EOF
 reading "请选择设置(默认跳过): " remove_local_lvm
 case $select_ui in
