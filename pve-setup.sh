@@ -426,7 +426,7 @@ EOF
 
 	        output = output.slice(0, -2);
 	        // return output.replace(/\n/g, '<br>');
-            return output.replace(/\n/g, '|');
+            return output.replace(/\n/g, '| ');
 	    }
 	},
     // end taodev/pve-setup
