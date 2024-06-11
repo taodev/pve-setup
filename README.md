@@ -22,3 +22,7 @@ bash <(curl -fsSL https://mirror.ghproxy.com/https://github.com/taodev/pve-setup
 - 去除登陆未订阅对话框
 - 配置显示功耗及温度
 - 移除local-lvm, 扩容local(root)
+>注意: 设置PCIe设备直通后, 需要手动重启
+
+## License
+©️Copyright 2024 [taodev](https://github.com/taodev). All Right Reserved
