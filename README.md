@@ -4,21 +4,12 @@
 >注意: 目前只针对PVE 8的版本，其它版本兼容性未进行测试，需使用root权限
 
 ## 安装
-### 使用wget安装
-github官方安装
-```
-sh -c "$(wget -qO- https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
-```
-ghproxy镜像安装
-```
-sh -c "$(wget -qO- https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
-```
 ### 使用curl安装
 github官方安装
 ```
-sh -c "$(curl -sL https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
+bash <(curl -fsSL https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)
 ```
 ghproxy镜像安装
 ```
-sh -c "$(curl -sL https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)"
+bash <(curl -fsSL https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)
 ```
