@@ -13,3 +13,12 @@ ghproxy镜像安装
 ```
 bash <(curl -fsSL https://mirror.ghproxy.com/https://github.com/taodev/pve-setup/raw/main/pve-setup.sh)
 ```
+
+## 功能
+- 配置dns(阿里云及谷歌)
+- 更换国内镜像源(科大及清华)
+- 更新并安装常用软件
+- 直通PCIe设备以及核显虚拟化直通
+- 去除登陆未订阅对话框
+- 配置显示功耗及温度
+- 移除local-lvm, 扩容local(root)
