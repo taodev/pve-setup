@@ -24,5 +24,11 @@ bash <(curl -fsSL https://mirror.ghproxy.com/https://github.com/taodev/pve-setup
 - 移除local-lvm, 扩容local(root)
 >注意: 设置PCIe设备直通后, 需要手动重启
 
+## 扩展
+### PVE宿主机设置DHCP获取IP
+```
+sed -i -e 's/addr/#addr/g' -e 's/gate/#gate/g' -e 's/static/dhcp/g' /etc/network/interfaces
+```
+
 ## License
 ©️Copyright 2024 [taodev](https://github.com/taodev). All Right Reserved
